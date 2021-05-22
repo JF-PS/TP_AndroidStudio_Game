@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></GridView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="com.androxp.randika.main.MainActivity"
+            tools:showIn="@layout/activity_main">
+
+            <Button
+                android:id="@+id/bAquarius"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+            <Button
+                android:id="@+id/bPisces"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/bAquarius"
+                android:onClick="moveTop"
+                android:text="↑" />
+            <Button
+                android:id="@+id/bAries"
+                android:layout_toRightOf="@+id/bPisces"
+                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_marginRight="5dp" />
+
+            <Button
+                android:id="@+id/bTaurs"
+                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:text="←"
+                android:onClick="moveLeft"
+                android:layout_below="@+id/bAquarius"
+                android:layout_alignLeft="@+id/bAquarius"
+                android:layout_alignStart="@+id/bAquarius" />
+          <Button
+                android:id="@+id/bGemini"
+                android:layout_height="wrap_content"
+                android:layout_width="115dp"
+                android:onClick="reStart"
+                android:text="refresh"
+                android:layout_alignTop="@+id/bTaurs"
+                android:layout_alignRight="@+id/bPisces"
+                android:layout_alignEnd="@+id/bPisces" />
+            <Button
+                android:id="@+id/bCancer"
+                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:text="→"
+                android:onClick="moveRight"
+                android:layout_below="@+id/bAries"
+                android:layout_alignRight="@+id/bAries"
+                android:layout_alignEnd="@+id/bAries" />
+
+            <Button
+                android:id="@+id/bLeo"
+                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_below="@+id/bTaurs"
+                android:layout_alignLeft="@+id/bTaurs"
+                android:layout_alignStart="@+id/bTaurs"/>
+
+            <Button
+                android:id="@+id/bVirgo"
+                android:layout_height="wrap_content"
+                android:layout_width="115dp"
+                android:text="↓"
+                android:onClick="moveBottom"
+                android:layout_alignTop="@+id/bLeo"
+                android:layout_alignLeft="@+id/bGemini"
+                android:layout_alignStart="@+id/bGemini" />
+
+            <Button
+                android:id="@+id/bLibra"
+                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_below="@+id/bCancer"
+                android:layout_alignRight="@+id/bCancer"
+                android:layout_alignEnd="@+id/bCancer"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
