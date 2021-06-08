@@ -3,12 +3,14 @@ package com.example.tp_game;
 public class Player {
     private int picture;
     private int position;
+    private int nbColumnMove;
     private String playerMoove;
 
-    public Player(int picture, String playerMoove, int position) {
+    public Player(int picture, String playerMoove, int position, int nbColumnMove) {
         this.picture = picture;
         this.playerMoove = playerMoove;
         this.position = position;
+        this.nbColumnMove = nbColumnMove;
     }
 
     public int getPicture() {
@@ -28,6 +30,10 @@ public class Player {
         ActualisePicturePlayerPosition();
     }
 
+    public int getNbColumnMove() {
+        return nbColumnMove;
+    }
+
     public int getPosition() {
         return position;
     }
@@ -43,10 +49,10 @@ public class Player {
                 positionMove = -1;
                 break;
             case "top":
-                positionMove = -7;
+                positionMove = - this.nbColumnMove;
                 break;
             case "bottom":
-                positionMove = +7;
+                positionMove = + this.nbColumnMove;
                 break;
             default:
                 positionMove = +1;
@@ -59,19 +65,19 @@ public class Player {
         switch(this.getPlayerMoove()) {
             case "left":
                 this.setPosition(getPlayerPositionMove(this.getPlayerMoove()));
-                this.setPicture(R.drawable.player_left);
+                this.setPicture(R.drawable.left);
                 break;
             case "top":
                 this.setPosition(getPlayerPositionMove(this.getPlayerMoove()));
-                this.setPicture(R.drawable.player_top);
+                this.setPicture(R.drawable.top);
                 break;
             case "bottom":
                 this.setPosition(getPlayerPositionMove(this.getPlayerMoove()));
-                this.setPicture(R.drawable.player_botomme);
+                this.setPicture(R.drawable.bottom);
                 break;
             default:
                 this.setPosition(getPlayerPositionMove(this.getPlayerMoove()));
-                this.setPicture(R.drawable.player_right);
+                this.setPicture(R.drawable.right);
         }
     }
 }

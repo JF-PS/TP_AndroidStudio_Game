@@ -1,6 +1,4 @@
 package com.example.tp_game;
-import android.widget.LinearLayout;
-
 import java.util.List;
 
 public class GameManager {
@@ -8,13 +6,16 @@ public class GameManager {
     private Player player;
     private List<CaisseBlock> caisseBlocks;
     private List<Goal> goals;
+    PlayActivity plays;
+    Level level;
 
 
-    public GameManager(String[] boardGame, Player player, List<CaisseBlock> caisseBlocks, List<Goal> goals) {
+    public GameManager(String[] boardGame, Player player, List<CaisseBlock> caisseBlocks, List<Goal> goals, Level level) {
         this.boardGame = boardGame;
         this.player = player;
         this.caisseBlocks = caisseBlocks;
         this.goals = goals;
+        this.level = level;
     }
 
     public String[] getBoardGame() {
@@ -54,7 +55,7 @@ public class GameManager {
     }
 
     public boolean isWal(int objectPosition){
-        return (this.getBoardGame()[objectPosition] == "#");
+        return (this.getBoardGame()[objectPosition].equals("#"));
     }
 
     public int[] MakeInterfaceGraphique() {
@@ -70,19 +71,19 @@ public class GameManager {
                     graphiqueBoard[i] = player.getPicture();
                     break;
                 case "X":
-                    graphiqueBoard[i] = R.drawable.point;
+                    graphiqueBoard[i] = R.drawable.check_point;
                     break;
                 case "C":
-                    graphiqueBoard[i] = R.drawable.block;
+                    graphiqueBoard[i] = R.drawable.bloc_caisse;
                     break;
                 case ".":
-                    graphiqueBoard[i] = R.drawable.terrain;
+                    graphiqueBoard[i] = R.drawable.bloc_terrain;
                     break;
                 case "V":
                     graphiqueBoard[i] = R.drawable.victory;
                     break;
                 default:
-                    graphiqueBoard[i] = R.drawable.mur;
+                    graphiqueBoard[i] = R.drawable.bloc_mur;
             }
         }
         return graphiqueBoard;
@@ -95,7 +96,7 @@ public class GameManager {
                 for (CaisseBlock caisseBlock: caisseBlocks) {
                     if(caisseBlock.getPosition() == position2) {
                         int caissePosition = caisseBlock.getPosition() + player.getPlayerPositionMove(playerMove);
-                        if(!isWal(caissePosition) && board[caissePosition] != "C"){
+                        if(!isWal(caissePosition) && !board[caissePosition].equals("C")){
                             caisseBlock.setPosition(caissePosition);
                             player.setPlayerMoove(playerMove);
 
@@ -111,13 +112,13 @@ public class GameManager {
                                 board[position1] = board[caissePosition];
                                 board[position2] = case1;
                                 board[caissePosition] = case2;
-                                gallAchived(caissePosition);
+                                goalAchieved(caissePosition);
                             }
                             else{
                                 board[position1] = ".";
                                 board[position2] = case1;
                                 board[caissePosition] = case2;
-                                gallAchived(caissePosition);
+                                goalAchieved(caissePosition);
                             }
                         }
                     }
@@ -146,7 +147,7 @@ public class GameManager {
         }
     }
 
-    public void gallAchived(int caissePosition) {
+    public void goalAchieved(int caissePosition) {
         int allGoalAchieved = 0;
 
         for(Goal goal : goals) {
@@ -172,11 +173,7 @@ public class GameManager {
     }
 
     public void victory() {
-        int i = 0;
-        while (i < this.getBoardGame().length) {
-            this.getBoardGame()[i] = "V";
-            i++;
-        }
+        level.setComplete(true);
     }
 
 

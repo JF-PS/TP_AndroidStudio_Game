@@ -9,24 +9,37 @@ public class Board {
     List<CaisseBlock> caisseBlocks;
     List<Goal> goals;
     Player player;
+    String[] board;
 
-    public Board(int column, int line) {
+    public Board(int column, int line, String[] board) {
         this.column = column;
         this.line = line;
+        this.board = board;
         init();
+    }
+
+    public String[] getBoard() {
+        return board;
+    }
+
+    public void setBoard(String[] board) {
+        this.board = board;
     }
 
     public String[] getGameArray() {
 
-        String[] boardGame = {
+        String[] plateau = {
                 "#", "#", "#", "#", "#", "#", "#",
                 "#", "P", ".", ".", ".", ".", "#",
-                "#", ".", "C", ".", "C", ".", "#",
-                "#", ".", "X", ".", "X", ".", "#",
+                "#", ".", "C", ".", ".", ".", "#",
                 "#", ".", ".", ".", ".", ".", "#",
+                "#", ".", ".", ".", ".", "X", "#",
                 "#", "#", "#", "#", "#", "#", "#",
         };
-        return boardGame;
+
+        String[] gameArray = this.getBoard();
+
+        return gameArray;
     }
 
     public void init(){
@@ -38,7 +51,7 @@ public class Board {
         {
             switch(board[i]) {
                 case "P":
-                    player = new Player(R.drawable.player_right,"", i);
+                    player = new Player(R.drawable.right,"", i, this.getColumn());
                     break;
                 case "X":
                     goals.add(new Goal(i, false));
@@ -52,18 +65,6 @@ public class Board {
 
     public int getColumn() {
         return column;
-    }
-
-    public int getLine() {
-        return line;
-    }
-
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
-    public void setLine(int line) {
-        this.line = line;
     }
 
     public List<CaisseBlock> getCaisseBlocks() {
